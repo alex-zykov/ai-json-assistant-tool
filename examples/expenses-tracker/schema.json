@@ -1,0 +1,136 @@
+{
+  "type": "object",
+  "properties": {
+    "commandRecognized": {
+      "type": "boolean"
+    },
+    "commands": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "command": {
+                "type": "string",
+                "const": "expense"
+              },
+              "category": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "number"
+              },
+              "description": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              },
+              "isRecurring": {
+                "type": "boolean"
+              },
+              "frequency": {
+                "type": "string",
+                "enum": ["once", "daily", "weekly", "monthly", "yearly"]
+              }
+            },
+            "required": [
+              "command",
+              "category",
+              "amount",
+              "description",
+              "date",
+              "isRecurring",
+              "frequency"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "command": {
+                "type": "string",
+                "const": "budget"
+              },
+              "action": {
+                "type": "string",
+                "enum": ["set", "update", "show"]
+              },
+              "category": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "number"
+              },
+              "period": {
+                "type": "string",
+                "enum": ["monthly", "yearly"]
+              }
+            },
+            "required": [
+              "command",
+              "action",
+              "category",
+              "amount",
+              "period"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "command": {
+                "type": "string",
+                "const": "balance"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["current", "projected"]
+              },
+              "timeframe": {
+                "type": "string",
+                "enum": ["now", "end-of-month", "end-of-year"]
+              }
+            },
+            "required": [
+              "command",
+              "type",
+              "timeframe"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "questionRecognized": {
+      "type": "boolean"
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "confidenceScore": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "text",
+          "confidenceScore"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "commandRecognized",
+    "commands",
+    "questionRecognized",
+    "questions"
+  ],
+  "additionalProperties": false
+}
