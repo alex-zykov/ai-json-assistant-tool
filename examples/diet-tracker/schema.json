@@ -1,0 +1,123 @@
+{
+  "type": "object",
+  "properties": {
+    "eventRecognized": {
+      "type": "boolean"
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "event": {
+                "type": "string",
+                "const": "meal"
+              },
+              "foodName": {
+                "type": "string"
+              },
+              "numberOfServings": {
+                "type": "number"
+              },
+              "portionSizeGrams": {
+                "type": "number"
+              },
+              "nutritionEstimates": {
+                "type": "object",
+                "properties": {
+                  "proteins": {
+                    "type": "number"
+                  },
+                  "fats": {
+                    "type": "number"
+                  },
+                  "carbohydrates": {
+                    "type": "number"
+                  },
+                  "calories": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "proteins",
+                  "fats",
+                  "carbohydrates",
+                  "calories"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "event",
+              "foodName",
+              "numberOfServings",
+              "portionSizeGrams",
+              "nutritionEstimates"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "event": {
+                "type": "string",
+                "const": "training"
+              },
+              "trainingName": {
+                "type": "string"
+              },
+              "trainingTimeMinutes": {
+                "type": "number"
+              },
+              "caloriesBurnt": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "event",
+              "trainingName",
+              "trainingTimeMinutes",
+              "caloriesBurnt"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "questionRecognized": {
+      "type": "boolean"
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "confidenceScore": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "text",
+              "confidenceScore"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "eventRecognized",
+    "events",
+    "questionRecognized",
+    "questions"
+  ],
+  "additionalProperties": false
+}
